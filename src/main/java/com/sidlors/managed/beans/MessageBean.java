@@ -1,4 +1,4 @@
-package coreservlets;
+package com.sidlors.managed.beans;
 
 public class MessageBean {
   private String message;

@@ -1,4 +1,4 @@
-package coreservlets;
+package com.sidlors.managed.beans;
 
 import javax.faces.model.*;
 import java.util.*;

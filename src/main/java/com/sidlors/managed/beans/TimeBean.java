@@ -1,4 +1,4 @@
-package coreservlets;
+package com.sidlors.managed.beans;
 
 import java.util.Date;
 
