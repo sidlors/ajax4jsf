@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE faces-config PUBLIC
+  "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
+  "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+<faces-config>
+  <!-- Bean for the a4j:commandButton/commandLink examples. -->
+  <managed-bean>
+    <managed-bean-name>numBean</managed-bean-name>
+    <managed-bean-class>coreservlets.RandomNumberBean</managed-bean-class> 
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <!-- Bean for the a4j:poll example. -->
+  <managed-bean>
+    <managed-bean-name>timeBean</managed-bean-name>
+    <managed-bean-class>coreservlets.TimeBean</managed-bean-class>
+    <managed-bean-scope>application</managed-bean-scope>
+  </managed-bean>
+  <!-- Bean for the a4j:support Repeater example. -->
+  <managed-bean>
+    <managed-bean-name>myBean</managed-bean-name>
+    <managed-bean-class>coreservlets.MessageBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <!-- Bean for the a4j:support State/City/Population example. -->
+  <managed-bean>
+    <managed-bean-name>locationBean</managed-bean-name>
+    <managed-bean-class>coreservlets.LocationBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+</faces-config>
