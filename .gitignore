@@ -3,6 +3,9 @@
 *.war
 *.ear
 *.class
+.~*
+
+.tern-project
 
 # eclipse specific git ignore
 *.pydevproject
