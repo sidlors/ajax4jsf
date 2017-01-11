@@ -1,30 +1,40 @@
-<?xml version="1.0"?>
-<!DOCTYPE faces-config PUBLIC
-  "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
-  "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
-<faces-config>
-  <!-- Bean for the a4j:commandButton/commandLink examples. -->
-  <managed-bean>
-    <managed-bean-name>numBean</managed-bean-name>
-    <managed-bean-class>com.sidlors.managed.beans.RandomNumberBean</managed-bean-class> 
-    <managed-bean-scope>request</managed-bean-scope>
-  </managed-bean>
-  <!-- Bean for the a4j:poll example. -->
-  <managed-bean>
-    <managed-bean-name>timeBean</managed-bean-name>
-    <managed-bean-class>com.sidlors.managed.beans.TimeBean</managed-bean-class>
-    <managed-bean-scope>application</managed-bean-scope>
-  </managed-bean>
-  <!-- Bean for the a4j:support Repeater example. -->
-  <managed-bean>
-    <managed-bean-name>myBean</managed-bean-name>
-    <managed-bean-class>com.sidlors.managed.beans.MessageBean</managed-bean-class>
-    <managed-bean-scope>request</managed-bean-scope>
-  </managed-bean>
-  <!-- Bean for the a4j:support State/City/Population example. -->
-  <managed-bean>
-    <managed-bean-name>locationBean</managed-bean-name>
-    <managed-bean-class>com.sidlors.managed.beans.LocationBean</managed-bean-class>
-    <managed-bean-scope>session</managed-bean-scope>
-  </managed-bean>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<faces-config version="1.2" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+ http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+
+	<application>
+		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+	</application>
+
+	<managed-bean>
+		<managed-bean-name>numBean</managed-bean-name>
+		<managed-bean-class>com.sidlors.managed.beans.RandomNumberBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>timeBean</managed-bean-name>
+		<managed-bean-class>com.sidlors.managed.beans.TimeBean</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>myBean</managed-bean-name>
+		<managed-bean-class>com.sidlors.managed.beans.MessageBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>locationBean</managed-bean-name>
+		<managed-bean-class>com.sidlors.managed.beans.LocationBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>fileUploadBean</managed-bean-name>
+		<managed-bean-class>com.sidlors.managed.beans.FileUploadBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
 </faces-config>
