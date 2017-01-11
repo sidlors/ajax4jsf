@@ -6,6 +6,7 @@
 
 	<application>
 		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+		 <variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver>
 	</application>
 
 	<managed-bean>
@@ -32,9 +33,20 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 
+   <!-- Bean for the MOVE_DIRECTORU example. -->
+  <managed-bean>
+    <managed-bean-name>moveDirectory</managed-bean-name>
+    <managed-bean-class>com.sidlors.managed.beans.MoveDirectoryBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+</managed-bean>
+
 	<managed-bean>
 		<managed-bean-name>fileUploadBean</managed-bean-name>
 		<managed-bean-class>com.sidlors.managed.beans.FileUploadBean</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>fileUploadManager</property-name>
+			<value>#{fileUploadManager}</value>
+		</managed-property>
 	</managed-bean>
 </faces-config>

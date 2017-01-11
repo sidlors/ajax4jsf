@@ -1,95 +1,106 @@
 package com.sidlors.managed.beans;
 
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.File ;
 import java.util.ArrayList;
-
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
-
-
+import mx.com.sidlors.interfaces.services.IFileUploadManager;
 
 public class FileUploadBean {
 
-    private ArrayList<File> files = new ArrayList<File>();
-    private int uploadsAvailable = 2;
-    private boolean autoUpload = false;
-    private boolean useFlash = false;
+	private ArrayList<File> files = new ArrayList<File>();
+	private int uploadsAvailable = 2;
+	private boolean autoUpload = false;
+	private boolean useFlash = false;
+	private IFileUploadManager fileUploadManager;
 
-    
-    
-    private static final Logger logger = Logger.getLogger(FileUploadBean.class);
+	private static final Logger logger = Logger.getLogger(FileUploadBean.class);
 
-
-    public int getSize() {
-	if (getFiles().size() > 0) {
-	    return getFiles().size();
-	} else {
-	    return 0;
+	public int getSize() {
+		if (getFiles().size() > 0) {
+			return getFiles().size();
+		} else {
+			return 0;
+		}
 	}
-    }
 
-    public FileUploadBean() {
-    }
+	public FileUploadBean() {
+	}
 
-    public void paint(OutputStream stream, Object object) throws IOException {
-	stream.write(getFiles().get((Integer) object).getData());
-    }
+//	public void paint(OutputStream stream, Object object) throws IOException {
+//		stream.write(getFiles().get((Integer) object).getData());
+//	}
 
-    public void listener(UploadEvent event) throws Exception {
-	UploadItem item = event.getUploadItem();
-	File file = new File();
-	file.setLength(item.getData().length);
-	file.setName(item.getFileName());
-	file.setData(item.getData());
-	files.add(file);
-	logger.setLevel(Level.WARN);
-	logger.info("");
-	uploadsAvailable--;
-    }
+	public void listener(UploadEvent event) throws Exception {
+		UploadItem item = event.getUploadItem();
+		if (validatorMultipart(item)) {
+			fileUploadManager.uploadFile(item.getFile());
+			//files.add(file);
+			logger.setLevel(Level.INFO);
+			logger.info("Paso");
+			uploadsAvailable--;
+		}
+	}
 
-    public String clearUploadData() {
-	files.clear();
-	setUploadsAvailable(5);
-	return null;
-    }
+	private boolean validatorMultipart(UploadItem item) {
+		//ServletFileUpload.isMultipartContent(FacesContext.getCurrentInstance().getExternalContext().getRequest());
+		//TODO Validar boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+		return true;
+	}
 
-    public long getTimeStamp() {
-	return System.currentTimeMillis();
-    }
+	public String clearUploadData() {
+		files.clear();
+		setUploadsAvailable(5);
+		return null;
+	}
 
-    public ArrayList<File> getFiles() {
-	return files;
-    }
+	public long getTimeStamp() {
+		return System.currentTimeMillis();
+	}
 
-    public void setFiles(ArrayList<File> files) {
-	this.files = files;
-    }
+	public ArrayList<File> getFiles() {
+		return files;
+	}
 
-    public int getUploadsAvailable() {
-	return uploadsAvailable;
-    }
+	public void setFiles(ArrayList<File> files) {
+		this.files = files;
+	}
 
-    public void setUploadsAvailable(int uploadsAvailable) {
-	this.uploadsAvailable = uploadsAvailable;
-    }
+	public int getUploadsAvailable() {
+		return uploadsAvailable;
+	}
 
-    public boolean isAutoUpload() {
-	return autoUpload;
-    }
+	public void setUploadsAvailable(int uploadsAvailable) {
+		this.uploadsAvailable = uploadsAvailable;
+	}
 
-    public void setAutoUpload(boolean autoUpload) {
-	this.autoUpload = autoUpload;
-    }
+	public boolean isAutoUpload() {
+		return autoUpload;
+	}
 
-    public boolean isUseFlash() {
-	return useFlash;
-    }
+	public void setAutoUpload(boolean autoUpload) {
+		this.autoUpload = autoUpload;
+	}
 
-    public void setUseFlash(boolean useFlash) {
-	this.useFlash = useFlash;
-    }
+	public boolean isUseFlash() {
+		return useFlash;
+	}
+
+	public void setUseFlash(boolean useFlash) {
+		this.useFlash = useFlash;
+	}
+
+	public void setFileUploadManager(IFileUploadManager fileUploadManager) {
+		this.fileUploadManager = fileUploadManager;
+	}
+
+	public IFileUploadManager getFileUploadManager() {
+		return fileUploadManager;
+	}
+	
+	
+	
 
 }
