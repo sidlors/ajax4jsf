@@ -43,7 +43,7 @@
 		<dependency>
 			<groupId>com.sun.facelets</groupId>
 			<artifactId>jsf-facelets</artifactId>
-			<version>1.1.14</version>
+			<version>1.1.12</version>
 		</dependency>
 		<!-- librerías de RichFaces -->
 		<dependency>
@@ -79,6 +79,13 @@
 			<artifactId>spring</artifactId>
 			<version>2.5.6</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>
@@ -101,7 +108,7 @@
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.2.11.v20150529</version>
-				
+
 				<configuration>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<webApp>

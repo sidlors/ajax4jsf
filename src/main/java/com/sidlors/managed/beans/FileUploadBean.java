@@ -4,15 +4,24 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
+
+
 
 public class FileUploadBean {
 
     private ArrayList<File> files = new ArrayList<File>();
-    private int uploadsAvailable = 5;
+    private int uploadsAvailable = 2;
     private boolean autoUpload = false;
     private boolean useFlash = false;
+
+    
+    
+    private static final Logger logger = Logger.getLogger(FileUploadBean.class);
+
 
     public int getSize() {
 	if (getFiles().size() > 0) {
@@ -36,6 +45,8 @@ public class FileUploadBean {
 	file.setName(item.getFileName());
 	file.setData(item.getData());
 	files.add(file);
+	logger.setLevel(Level.WARN);
+	logger.info("");
 	uploadsAvailable--;
     }
 
