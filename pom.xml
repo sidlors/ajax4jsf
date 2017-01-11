@@ -6,7 +6,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<properties>
-		<org.richfaces.version>3.3.3.Final</org.richfaces.version>
+		<hibernate.version>3.3.0.ga</hibernate.version>
 	</properties>
 
 
@@ -16,6 +16,11 @@
 			<name>Jboss Repository for Maven</name>
 			<url>http://repository.jboss.com/maven2/</url>
 		</repository>
+		<repository>
+      		<id>central</id>
+      		<name>Maven Repository</name>
+      		<url>http://repo1.maven.org/maven2</url>
+    	</repository>
 	</repositories>
 
 
@@ -51,16 +56,15 @@
 			<artifactId>richfaces-ui</artifactId>
 			<version>3.3.2.GA</version>
 		</dependency>
-
 		<dependency>
-			<groupId>hibernate-annotations</groupId>
-			<artifactId>hibernate-annotations</artifactId>
-			<version>3.3.0.ga</version>
+    		<groupId>org.hibernate</groupId>
+    		<artifactId>hibernate-annotations</artifactId>
+    		<version>3.3.0.ga</version>
 		</dependency>
 		<dependency>
-			<groupId>hibernate-commons-annotations</groupId>
-			<artifactId>hibernate-commons-annotations</artifactId>
-			<version>3.0.0.ga</version>
+    		<groupId>org.hibernate</groupId>
+    		<artifactId>hibernate-commons-annotations</artifactId>
+    		<version>3.3.0.ga</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>

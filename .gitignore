@@ -4,8 +4,8 @@
 *.ear
 *.class
 .~*
-
 .tern-project
+*.log
 
 # eclipse specific git ignore
 *.pydevproject
