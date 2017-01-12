@@ -1,7 +1,13 @@
 package com.sidlors.managed.beans;
 
-import java.io.File ;
+import java.io.File;
 import java.util.ArrayList;
+
+import javax.faces.context.FacesContext;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.richfaces.event.UploadEvent;
@@ -9,6 +15,9 @@ import org.richfaces.model.UploadItem;
 import mx.com.sidlors.interfaces.services.IFileUploadManager;
 
 public class FileUploadBean {
+	
+	
+	private static final Logger logger = Logger.getLogger(FileUploadBean.class);
 
 	private ArrayList<File> files = new ArrayList<File>();
 	private int uploadsAvailable = 2;
@@ -16,7 +25,7 @@ public class FileUploadBean {
 	private boolean useFlash = false;
 	private IFileUploadManager fileUploadManager;
 
-	private static final Logger logger = Logger.getLogger(FileUploadBean.class);
+	
 
 	public int getSize() {
 		if (getFiles().size() > 0) {
@@ -29,25 +38,14 @@ public class FileUploadBean {
 	public FileUploadBean() {
 	}
 
-//	public void paint(OutputStream stream, Object object) throws IOException {
-//		stream.write(getFiles().get((Integer) object).getData());
-//	}
-
 	public void listener(UploadEvent event) throws Exception {
 		UploadItem item = event.getUploadItem();
-		if (validatorMultipart(item)) {
-			fileUploadManager.uploadFile(item.getFile());
-			//files.add(file);
-			logger.setLevel(Level.INFO);
-			logger.info("Paso");
-			uploadsAvailable--;
-		}
-	}
 
-	private boolean validatorMultipart(UploadItem item) {
-		//ServletFileUpload.isMultipartContent(FacesContext.getCurrentInstance().getExternalContext().getRequest());
-		//TODO Validar boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-		return true;
+		File f = item.getFile();
+
+		if (f != null && item.getFileName() != null) {
+			UtilFileMoveDirectory.mueveDirectorio(f, new File("C:\\workarea\\temp\\" + item.getFileName()));
+		}
 	}
 
 	public String clearUploadData() {
@@ -99,8 +97,5 @@ public class FileUploadBean {
 	public IFileUploadManager getFileUploadManager() {
 		return fileUploadManager;
 	}
-	
-	
-	
 
 }

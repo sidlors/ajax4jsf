@@ -13,6 +13,8 @@
 
 	<bean id="fileUploadManager" class="mx.com.sidlors.services.FileUploadManager">
 		<property name="repository" value="${app.fileupload.repository}" />
+		<property name="tempDirectory" value="${app.fileupload.temp.repository}" />
+		<property name="maxMemorySize" value="${app.fileupload.maxMemorySize}" />
 	</bean>
 
 	<!-- Inyeccion por Constructor -->

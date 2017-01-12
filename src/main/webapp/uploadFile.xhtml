@@ -6,12 +6,12 @@
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j">
 <f:view>
-	<h:form>
+	<h:form >
 		<h:panelGrid columns="2" columnClasses="top,top">
 			<rich:fileUpload fileUploadListener="#{fileUploadBean.listener}"
 				maxFilesQuantity="#{fileUploadBean.uploadsAvailable}" id="upload"
 				immediateUpload="#{fileUploadBean.autoUpload}"
-				acceptedTypes="jpg, gif, png, bmp"
+				acceptedTypes="txt, iso"
 				allowFlash="#{fileUploadBean.useFlash}">
 				<a4j:support event="onuploadcomplete" reRender="info" />
 			</rich:fileUpload>

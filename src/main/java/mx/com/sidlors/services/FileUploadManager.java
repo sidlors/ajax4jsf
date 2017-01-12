@@ -1,79 +1,55 @@
 package mx.com.sidlors.services;
 
 import java.io.File;
-import java.util.Iterator;
+import java.io.IOException;
 import java.util.List;
-
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FileUtils;
 
 import mx.com.sidlors.interfaces.services.IFileUploadManager;
 
 public class FileUploadManager implements IFileUploadManager {
-	
-	
+
 	private String repository;
+	private String tempDirectory;
+	private int maxMemorySize;
 
 	@Override
-	public void uploadFile(List<FileItem> items, File repository) {
-		// Create a factory for disk-based file items
-		DiskFileItemFactory factory = new DiskFileItemFactory();
-		factory.setRepository(repository);
+	public void moveUploadedFiles(List<File> files) {
 
-		// Create a new file upload handler
-		ServletFileUpload upload = new ServletFileUpload(factory);
-		Iterator<FileItem> iter = items.iterator();
+		if (files.size() > 0 || files != null) {
+			try {
+				FileUtils.copyDirectory(new File(files.get(0).getParent()), new File(repository));
+				FileUtils.cleanDirectory(new File(files.get(0).getParent()));
+			} catch (IOException ex) {
 
-		while (iter.hasNext()) {
-			FileItem item = iter.next();
-
-			if (item.isFormField()) {
-				processFormField(item);
-			} else {
-				processUploadedFile(item);
 			}
 		}
 
 	}
-	
-	@Override
-	public void uploadFile(File file) {
-		// Create a factory for disk-based file items
-		DiskFileItemFactory factory = new DiskFileItemFactory();
-		factory.setRepository(new File(repository));
-		// Create a new file upload handler
-		ServletFileUpload upload = new ServletFileUpload(factory);
-//		Iterator<FileItem> iter = items.iterator();
-//
-//		while (iter.hasNext()) {
-//			FileItem item = iter.next();
-//
-//			if (item.isFormField()) {
-//				processFormField(item);
-//			} else {
-//				processUploadedFile(item);
-//			}
-//		}
-		
-	}
 
 	private void processUploadedFile(FileItem item) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void processFormField(FileItem item) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void setRepository(String repository) {
 		this.repository = repository;
 	}
+
+	public void setTempDirectory(String tempDirectory) {
+		this.tempDirectory = tempDirectory;
+	}
+
+	public void setMaxMemorySize(int maxMemorySize) {
+		this.maxMemorySize = maxMemorySize;
+	}
 	
 	
-
-
 
 }
