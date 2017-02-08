@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<f:view>
+	<table border="1">
+		<tr>
+			<td width="100">
+				<h:form>
+					watchrequestid: 
+          			<h:inputText value="#{reportAsync.watchrequestid}" size="5" />
+					criterionid: 
+          			<h:inputText value="#{reportAsync.criterionid}" size="5" />
+					<a4j:commandLink action="#{reportAsync.doService}"
+						value="Request Full Report" reRender="region2" />
+				</h:form>
+			</td>
+			<td width="100">
+				<h:outputText value="#{numBean.result}"	id="region2" />
+			</td>
+		</tr>
+	</table>
+</f:view>
+</html>

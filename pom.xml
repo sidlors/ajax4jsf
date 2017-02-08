@@ -17,10 +17,10 @@
 			<url>http://repository.jboss.com/maven2/</url>
 		</repository>
 		<repository>
-      		<id>central</id>
-      		<name>Maven Repository</name>
-      		<url>http://repo1.maven.org/maven2</url>
-    	</repository>
+			<id>central</id>
+			<name>Maven Repository</name>
+			<url>http://repo1.maven.org/maven2</url>
+		</repository>
 	</repositories>
 
 
@@ -57,14 +57,19 @@
 			<version>3.3.2.GA</version>
 		</dependency>
 		<dependency>
-    		<groupId>org.hibernate</groupId>
-    		<artifactId>hibernate-annotations</artifactId>
-    		<version>3.3.0.ga</version>
+			<groupId>com.ibm.informix</groupId>
+			<artifactId>jdbc</artifactId>
+			<version>4.10.7.20160517</version>
 		</dependency>
 		<dependency>
-    		<groupId>org.hibernate</groupId>
-    		<artifactId>hibernate-commons-annotations</artifactId>
-    		<version>3.3.0.ga</version>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>3.3.0.ga</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-commons-annotations</artifactId>
+			<version>3.3.0.ga</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -83,23 +88,39 @@
 			<artifactId>spring</artifactId>
 			<version>2.5.6</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.2</version>
 		</dependency>
-				<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
 		<dependency>
-		    <groupId>commons-fileupload</groupId>
-		    <artifactId>commons-fileupload</artifactId>
-		    <version>1.2.2</version>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2.2</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
 		<dependency>
-		    <groupId>commons-io</groupId>
-		    <artifactId>commons-io</artifactId>
-		    <version>2.4</version>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.sf.jsefa/jsefa -->
+		<dependency>
+			<groupId>net.sf.jsefa</groupId>
+			<artifactId>jsefa</artifactId>
+			<version>1.1.0.RELEASE</version>
 		</dependency>
 
 	</dependencies>

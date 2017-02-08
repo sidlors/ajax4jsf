@@ -1,31 +1,33 @@
 package com.sidlors.managed.beans;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.component.html.HtmlInputTextarea;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
-import mx.com.sidlors.interfaces.services.IFileUploadManager;
 
-public class FileUploadBean {
+public class FileUploadBean implements Serializable {
 	
-	
+	private static final long serialVersionUID = 8566168864254652768L;
 	private static final Logger logger = Logger.getLogger(FileUploadBean.class);
-
-	private ArrayList<File> files = new ArrayList<File>();
+	private ArrayList<FileCuenta> files = new ArrayList<FileCuenta>();
 	private int uploadsAvailable = 2;
 	private boolean autoUpload = false;
 	private boolean useFlash = false;
-	private IFileUploadManager fileUploadManager;
 
-	
+
+
+	public FileUploadBean() {
+
+	}
 
 	public int getSize() {
 		if (getFiles().size() > 0) {
@@ -35,17 +37,38 @@ public class FileUploadBean {
 		}
 	}
 
-	public FileUploadBean() {
-	}
-
 	public void listener(UploadEvent event) throws Exception {
+
 		UploadItem item = event.getUploadItem();
-
-		File f = item.getFile();
-
-		if (f != null && item.getFileName() != null) {
-			UtilFileMoveDirectory.mueveDirectorio(f, new File("C:\\workarea\\temp\\" + item.getFileName()));
+		if (item.getFile() != null && item.getFileName() != null) {
+			String nameFileUploaded = event.getUploadItem().getFileName();
+			FileCuenta file = new FileCuenta();
+			file.setLength(item.getFile().getTotalSpace());
+			file.setName(item.getFileName());
+			file.setData(item.getData());
+			file.setFile(item.getFile());
+			file.setNombreLote("Lote Prueba");
+			files.add(file);
+			uploadsAvailable--;
+			FileUtil.copyFileUsingChannel(file.getFile(), new File("C:\\workarea\\workarea_watch\\files\\" + nameFileUploaded));
 		}
+
+	}
+	
+	
+	
+	public void validator(FacesContext context, UIComponent component, Object value) throws ValidatorException {
+		logger.debug("Component" + component);
+		HtmlInputTextarea textArea = (HtmlInputTextarea) component;
+		String submitted = textArea.getSubmittedValue().toString(); 
+		if (submitted.length() > 255)
+		{
+			textArea.setSubmittedValue(submitted.substring(0, 254));
+			FacesMessage msg = new FacesMessage("Solo se permiten 255 caracteres como maximo. Se trunca la entrada a dicha longitud.");
+			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			throw new ValidatorException(msg);
+		}
+		
 	}
 
 	public String clearUploadData() {
@@ -58,11 +81,11 @@ public class FileUploadBean {
 		return System.currentTimeMillis();
 	}
 
-	public ArrayList<File> getFiles() {
+	public ArrayList<FileCuenta> getFiles() {
 		return files;
 	}
 
-	public void setFiles(ArrayList<File> files) {
+	public void setFiles(ArrayList<FileCuenta> files) {
 		this.files = files;
 	}
 
@@ -90,12 +113,5 @@ public class FileUploadBean {
 		this.useFlash = useFlash;
 	}
 
-	public void setFileUploadManager(IFileUploadManager fileUploadManager) {
-		this.fileUploadManager = fileUploadManager;
-	}
-
-	public IFileUploadManager getFileUploadManager() {
-		return fileUploadManager;
-	}
 
 }

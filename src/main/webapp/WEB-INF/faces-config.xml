@@ -40,6 +40,13 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 
+
+	<managed-bean>
+		<managed-bean-name>newBatchBean</managed-bean-name>
+		<managed-bean-class>com.sidlors.managed.beans.NewBatchBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
 	<managed-bean>
 		<managed-bean-name>fileUploadBean</managed-bean-name>
 		<managed-bean-class>com.sidlors.managed.beans.FileUploadBean</managed-bean-class>
@@ -47,6 +54,17 @@
 		<managed-property>
 			<property-name>fileUploadManager</property-name>
 			<value>#{fileUploadManager}</value>
+		</managed-property>
+	</managed-bean>
+	
+	
+	<managed-bean>
+		<managed-bean-name>reportAsync</managed-bean-name>
+		<managed-bean-class>com.sidlors.managed.beans.ReportAsyncBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>batchReportClient</property-name>
+			<value>#{batchReportClient}</value>
 		</managed-property>
 	</managed-bean>
 </faces-config>
