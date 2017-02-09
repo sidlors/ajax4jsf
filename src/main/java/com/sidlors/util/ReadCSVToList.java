@@ -2,16 +2,20 @@ package com.sidlors.util;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.StringReader;
-import java.io.StringWriter;
+import java.io.Reader;
 import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.ui.Model;
 
 import com.sidlors.model.ResultModel;
 
 import net.sf.jsefa.Deserializer;
-import net.sf.jsefa.flr.FlrIOFactory;
+import net.sf.jsefa.csv.CsvIOFactoryImpl;
+import net.sf.jsefa.csv.config.CsvConfiguration;
 
 public class ReadCSVToList {
 
@@ -54,16 +58,40 @@ public class ReadCSVToList {
 
 	}
 	
-	private void deserealizacion(){
-		Deserializer deserializer = FlrIOFactory.createFactory(ResultModel.class).createDeserializer();
-		StringWriter writer = new StringWriter();
-		StringReader reader = new StringReader(writer.toString());
+	public static List<ResultModel> deserializacion(File file) throws FileNotFoundException{
+		CsvConfiguration cof=new CsvConfiguration();
+		cof.setFieldDelimiter(',');
+		Deserializer deserializer = CsvIOFactoryImpl.createFactory(cof,ResultModel.class).createDeserializer();
+		List<ResultModel> lista=new ArrayList<ResultModel>();
+		Reader reader = createFileReader(file);
 		deserializer.open(reader);
 		while (deserializer.hasNext()) {
-			ResultModel p = deserializer.next();
-		  
+			lista.add((ResultModel)deserializer.next());
 		}
 		deserializer.close(true);
+		return lista;
+	}
+	
+	
+	private static Reader createFileReader(File file) throws FileNotFoundException {
+		if(!file.exists())
+			throw new FileNotFoundException();
+		
+        return new FileReader(file);
+    }
+
+	public static List<ResultModel>  deserializacion(Class<ResultModel> class1, File file) throws FileNotFoundException {
+		CsvConfiguration cof=new CsvConfiguration();
+		cof.setFieldDelimiter(',');
+		Deserializer deserializer = CsvIOFactoryImpl.createFactory(cof,class1).createDeserializer();
+		List<ResultModel> lista=new ArrayList<ResultModel>();
+		Reader reader = createFileReader(file);
+		deserializer.open(reader);
+		while (deserializer.hasNext()) {
+			lista.add((ResultModel)deserializer.next());
+		}
+		deserializer.close(true);
+		return lista;
 	}
 
 }

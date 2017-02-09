@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context 
@@ -42,12 +41,14 @@
 	<bean id="JsonOutputGenerator" class="mx.com.sidlors.services.JsonOutputGenerator" />
 	<bean id="OutputHelperTxt" class="mx.com.sidlors.services.TxtOutputGenerator" />
 	<bean id="batchReportClient" class="com.sidlors.async.service.BatchReportClient">
-		<property name="service" ref="synchronousQueueService"/>
-		<property name="request" value="${app.report.maxNumThreads}"/>
+		<property name="service" ref="synchronousQueueService" />
+		<property name="request" value="${app.report.maxNumThreads}" />
 	</bean>
-	<bean id="synchronousQueueService" class="com.sidlors.async.service.SynchronousQueueService"/>
-	
-	
+	<bean id="synchronousQueueService" class="com.sidlors.async.service.SynchronousQueueService" />
+	<bean id="downloaderReportService" class="com.sidlors.async.service.DownloaderReportService">
+		
+	</bean>
+
 
 
 </beans>

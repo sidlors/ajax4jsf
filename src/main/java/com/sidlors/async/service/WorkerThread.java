@@ -5,13 +5,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.sidlors.model.ResultModel;
+import com.sidlors.util.Constant;
 import com.sidlors.util.DBInformation;
 import com.sidlors.util.WriterResult;
 
@@ -53,19 +54,17 @@ public class WorkerThread implements Runnable {
 
 	private void processCommand() {
 		Connection dbConnection = null;
-		Statement statement = null;
-		PreparedStatement p=null;
-		//String newQyer = "SELECT SKIP %s LIMIT %s h.sourcetable, h.fieldchanges, h.hitdate ,e.accountnumber, e.fid , e.first , e.paternal , e.maternal ,e.rfc,e.parent_id ,e.companyname,r.type FROM watch_hit h	JOIN watch_request r  ON r.id = h.watchrequestid JOIN watch_entity e ON e.id = h.entityid WHERE e.batch_id = r.batch_id  and h.watchrequestid =3866 and h.criterionid =2792";
+		PreparedStatement statement=null;
 		try {
 			String selectTableSQL = String.format(query, skip, limit);
 			dbConnection = DBInformation.getDBConnection();
-			statement = dbConnection.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-			p=dbConnection.prepareStatement(selectTableSQL);
-			p.setInt(1, watchrequestid);
-			p.setInt(2, criterionid);
+			//statement = dbConnection.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+			statement=dbConnection.prepareStatement(selectTableSQL,ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+			statement.setInt(1, watchrequestid);
+			statement.setInt(2, criterionid);
 			long start = System.currentTimeMillis();
 			logger.info(selectTableSQL);
-			ResultSet rs = p.executeQuery();
+			ResultSet rs = statement.executeQuery();
 			long result = System.currentTimeMillis();
 			elements = new ArrayList<ResultModel>();
 			ResultModel modelo;
@@ -77,7 +76,7 @@ public class WorkerThread implements Runnable {
 				elements.add(modelo);
 			}
 			long iniWr = System.currentTimeMillis();
-			WriterResult.writeFile(elements, "fileName");
+			WriterResult.writeFile(elements, Constant.WORKAREA_FILES_PATH+"fileName");
 			long fniWr = System.currentTimeMillis();
 			long fin = System.currentTimeMillis();
 			logger.info("Command = " + command + " == Query Results: " + (result - start) / 1000

@@ -67,4 +67,20 @@
 			<value>#{batchReportClient}</value>
 		</managed-property>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>downloaderReport</managed-bean-name>
+		<managed-bean-class>com.sidlors.managed.beans.DownloaderReport</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>downloaderReportService</property-name>
+			<value>#{downloaderReportService}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>progressBarBean</managed-bean-name>
+		<managed-bean-class>com.sidlors.managed.beans.ProgressBarBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	
+	
 </faces-config>

@@ -3,37 +3,52 @@ package com.sidlors.model;
 import net.sf.jsefa.csv.annotation.CsvDataType;
 import net.sf.jsefa.csv.annotation.CsvField;
 
+
 @CsvDataType()
 public class ResultModel {
 
-	/**
-	 * 
-	 */
-	@CsvField(pos = 1)private static final long serialVersionUID = 578857834681625235L;
+	@CsvField(pos = 1)
+	 String sourcetable;
 
-	@CsvField(pos = 2)private String sourcetable;
+	@CsvField(pos = 2)
+	 String fieldchanges;
 
-	@CsvField(pos = 3)private String fieldchanges;
+	@CsvField(pos = 3)
+	 String hitdate;
 
-	@CsvField(pos = 4)private String hitdate;
+	@CsvField(pos = 4)
+	 String accountnumber;
 
-	@CsvField(pos = 5)private String accountnumber;
+	@CsvField(pos = 5)
+	 String fid;
 
-	@CsvField(pos = 6)private String fid;
+	@CsvField(pos = 6)
+	 String first;
 
-	@CsvField(pos = 7)private String first;
+	@CsvField(pos = 7)
+	 String paternal;
 
-	@CsvField(pos = 8)private String paternal;
+	@CsvField(pos = 8)
+	 String maternal;
 
-	@CsvField(pos = 9)private String maternal;
+	@CsvField(pos = 9)
+	 String rfc;
 
-	@CsvField(pos = 10)private String rfc;
+	@CsvField(pos = 10)
+	 String parent_id;
 
-	@CsvField(pos = 11)private String parent_id;
+	@CsvField(pos = 11)
+	 String companyname;
 
-	@CsvField(pos = 12)private String companyname;
+	@CsvField(pos = 12)
+	 String type;
+	
+	
 
-	@CsvField(pos = 13)private String type;
+	public ResultModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public String getSourcetable() {
 		return sourcetable;
@@ -151,7 +166,7 @@ public class ResultModel {
 
 	@Override
 	public String toString() {
-		return fid + "," + fieldchanges + " , " + sourcetable + "," + hitdate + "," + accountnumber + "," + first + ","
+		return sourcetable + "," + fieldchanges + " , "+ hitdate + "," +accountnumber + "," + fid + "," +  first + ","
 				+ paternal + "," + maternal + "," + rfc + "," + parent_id + "," + companyname + "," + type + "\r\n";
 	}
 }

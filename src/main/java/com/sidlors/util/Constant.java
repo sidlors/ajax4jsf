@@ -16,5 +16,9 @@ public class Constant {
 	public static final String DB_CONNECTION = "jdbc:informix-sqli://192.168.253.153:1559/watch:INFORMIXSERVER=watch_bc_11";
 	public static final String DB_USER = "watprod";
 	public static final String DB_PASSWORD = "l1N#wAtP";
+	public static final String WORKAREA_PATH="C:\\workarea\\workarea_watch\\";
+	public static final String WORKAREA_REPOSITORY_PATH="C:\\workarea\\workarea_watch\\repositorio\\";
+	public static final String WORKAREA_FILES_PATH="C:\\workarea\\workarea_watch\\files\\";
 	
 }
+

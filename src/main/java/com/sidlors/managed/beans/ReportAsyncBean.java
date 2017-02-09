@@ -12,6 +12,7 @@ public class ReportAsyncBean implements Serializable{
 	private String cmd;
 	private int watchrequestid;
 	private int criterionid;
+	private String url;
 	
 	public void doService( ){
 		
@@ -52,8 +53,15 @@ public class ReportAsyncBean implements Serializable{
 		this.cmd = cmd;
 	}
 
-	
+	public String getUrl() {
+		return url;
+	}
 
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
+	
 	
 
 }
