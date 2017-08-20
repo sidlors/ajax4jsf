@@ -10,7 +10,7 @@
 	</properties>
 
 
-	<repositories>
+	<repositories> 
 		<repository>
 			<id>repository.jboss.com</id>
 			<name>Jboss Repository for Maven</name>
@@ -133,7 +133,11 @@
 			<artifactId>jsefa</artifactId>
 			<version>1.1.0.RELEASE</version>
 		</dependency>
-
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>1.1</version>
+		</dependency>
 	</dependencies>
 	<build>
 	<finalName>ajax4jsf</finalName>
