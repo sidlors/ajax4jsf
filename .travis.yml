@@ -5,8 +5,8 @@ language: java
 after_success:
   - mvn clean compile install
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-  docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-  docker push sidlors/ajax4jsf-demo;
-  fi
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push sidlors/ajax4jsf-demo;
+    fi
 jdk:
 - oraclejdk8
