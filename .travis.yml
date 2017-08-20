@@ -2,8 +2,6 @@ sudo: required
 services:
   - docker
 language: java
-before_install:
-  - pip install --user codecov
 after_success:
   - mvn clean compile cobertura:cobertura coveralls:report install
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
