@@ -6,13 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import org.junit.Test;
+import org.junit.Ignore;
 
 import com.sidlors.util.Constant;
 
 public class DataBaseTest {
 
-	@Test
+	@Ignore
 	public void goByJBDC() throws SQLException {
 
 		String DB_DRIVER = "com.informix.jdbc.IfxDriver";
