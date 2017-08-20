@@ -2,6 +2,6 @@ language: java
 before_install:
   - pip install --user codecov
 after_success:
-  - mvn clean cobertura:cobertura coveralls:report
+  - mvn clean compile cobertura:cobertura coveralls:report install
 jdk:
 - oraclejdk8
