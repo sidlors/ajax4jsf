@@ -3,7 +3,7 @@ services:
   - docker
 language: java
 after_success:
-  - mvn clean compile cobertura:cobertura coveralls:report install
+  - mvn clean compile install
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
   docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
   docker push sidlors/ajax4jsf-demo;
