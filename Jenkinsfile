@@ -7,26 +7,9 @@ pipeline {
     
   }
   stages {
-    stage('Initialize') {
-      steps {
-        sh '''echo PATH=${PATH}
-
-
-
-
-
-
-
-
-
-
-echo M2_HOME=${M2_HOME} 
-maven clean'''
-      }
-    }
     stage('Build') {
       steps {
-        sh 'mvn -Dmaven.test.failure.ignore=true install '
+        sh 'mvn clean install -Dmaven.test.failure.ignore=true '
       }
     }
     stage('Report') {
